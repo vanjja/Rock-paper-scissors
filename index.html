@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <script>
+
+        function computerPlay(){
+            let array = ['rock', 'paper', 'scissors'];
+            let x = Math.floor(Math.random() * 3);
+            return array[x];
+        }
+
+        function playRound(playerSelection, computerSelection){
+            playerSelection.toLowerCase();
+            let w = 'win', d = 'draw', l = 'lose';
+            switch(playerSelection){
+                    case 'rock':
+                        if(computerSelection == 'rock'){
+                            return d;
+                        } else if(computerSelection == 'scissors'){
+                            return w;
+                        } else {
+                            return l;
+                        }
+                        break;
+                    
+                    case 'paper':
+                        if(computerSelection == 'paper'){
+                            return d;
+                        } else if(computerSelection == 'scissors'){
+                            return l;
+                        } else {
+                            return w;
+                        }
+                        break;
+                    
+                    case 'scissors':
+                        if(computerSelection == 'scissors'){
+                            return d;
+                        } else if(computerSelection == 'paper'){
+                            return w;
+                        } else {
+                            return l;
+                        }
+                        break;
+                    default: 
+                        return ('Not available choice, please try again.');
+                        break;
+            }
+        }
+
+        function game(){
+            let playerChoice;
+            let computerChoice;
+            let playerScore = 0;
+            let computerScore = 0;
+            let i = 0;
+            for(i; i<5; i++){
+                playerChoice = window.prompt('Type your choice (rock, paper or scissors)', 'Text field');
+                computerChoice = computerPlay();
+                let round = playRound(playerChoice, computerChoice);
+                if(round == 'win'){
+                    playerScore++;
+                    console.log(`You win! ${playerChoice} beats ${computerChoice}`);
+                } else if(round == 'lose'){
+                    computerScore++;
+                    console.log(`You lose! ${computerChoice} beats ${playerChoice}`);
+                } else if(round == 'draw'){
+                    console.log(`You draw! ${playerChoice} equals ${computerChoice}`);
+                    i--;
+                } else {
+                    console.log('Not available choice, please try again.');
+                    i--;
+                }
+            }
+            if(playerScore > computerScore){
+                console.log(`You win! Result: ${playerScore} : ${computerScore}`);
+            } else {
+                console.log(`You lose! Result: ${playerScore} : ${computerScore}`);
+            }
+        }
+
+    </script>
+</html>
